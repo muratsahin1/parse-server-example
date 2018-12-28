@@ -51,11 +51,22 @@ app.get('/', function(req, res) {
 });
 
 app.get('/getScores',function(req,res){
+ var GameScore = Parse.Object.extend("GameScore");
+var query = new Parse.Query(GameScore);
+query.get("mKbEsFcGgl")
+.then((gameScore) => {
+  // The object was retrieved successfully.
   res.render('index.twig',{
-     score:5,
+     score:gameScore,
      playerName:4,
      cheatMode:6
-  })
+  });
+}, (error) => {
+  // The object was not retrieved successfully.
+  // error is a Parse.Error with an error code and message.
+  console.log(error);
+});
+  
 })
 
 // There will be a test page available on the /test path of your server url

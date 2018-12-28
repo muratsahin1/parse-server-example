@@ -50,10 +50,10 @@ app.get('/', function(req, res) {
   res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
 });
 
-app.get('/getScores',function(req,res){
+app.get('/getScores/:id',function(req,res){
  var GameScore = Parse.Object.extend("GameScore");
 var query = new Parse.Query(GameScore);
-query.get("mKbEsFcGgl")
+query.get(req.params.id)
 .then((gameScore) => {
   // The object was retrieved successfully.
   res.render('index.twig',{

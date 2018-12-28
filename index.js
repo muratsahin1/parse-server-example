@@ -57,9 +57,9 @@ query.get("mKbEsFcGgl")
 .then((gameScore) => {
   // The object was retrieved successfully.
   res.render('index.twig',{
-     score:gameScore,
-     playerName:4,
-     cheatMode:6
+     score:gameScore.score,
+     playerName:gameScore.playerName,
+     cheatMode:gameScore.cheatMode
   });
 }, (error) => {
   // The object was not retrieved successfully.

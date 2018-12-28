@@ -4,6 +4,7 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
+const Twig = require("twig");
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -27,6 +28,15 @@ var api = new ParseServer({
 
 var app = express();
 
+app.set("twig options", {
+    allow_async: true, // Allow asynchronous compiling
+    strict_variables: false
+});
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
@@ -36,8 +46,17 @@ app.use(mountPath, api);
 
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
+
   res.status(200).send('I dream of being a website.  Please star the parse-server repo on GitHub!');
 });
+
+app.get('/getScores',function(req,res){
+  res.render('index.twig',{
+     score:5,
+     playerName:4,
+     cheatMode:6
+  })
+})
 
 // There will be a test page available on the /test path of your server url
 // Remove this before launching your app

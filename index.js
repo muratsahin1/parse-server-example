@@ -66,8 +66,27 @@ query.get(req.params.id)
   // error is a Parse.Error with an error code and message.
   console.log(error);
 });
-  
+});
+
+app.post('api/v1/save',function(req,res){
+ const GameScore = Parse.Object.extend("GameScore");
+const gameScore = new GameScore();
+
+gameScore.set("score", req.body.score);
+gameScore.set("playerName", req.body.playerName);
+gameScore.set("cheatMode", req.body.cheat);
+
+gameScore.save()
+.then((gameScore) => {
+  // Execute any logic that should take place after the object is saved.
+  res.send('successfully added');
+}, (error) => {
+  // Execute any logic that should take place if the save fails.
+  // error is a Parse.Error with an error code and message.
+  res.send('error: ' + error.message);
+});
 })
+
 
 // There will be a test page available on the /test path of your server url
 // Remove this before launching your app

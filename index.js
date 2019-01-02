@@ -82,7 +82,8 @@ gameScore.set("cheatMode", req.body.cheat);
 gameScore.save()
 .then((gameScore) => {
   // Execute any logic that should take place after the object is saved.
-  var json = "{status:200,score:"+req.body.score+",playerName:\""+req.body.playerName+"\",cheatMode:"+req.body.cheatMode+"}"
+
+  var json = "{status:"+res.status+",score:"+req.body.score+",playerName:\""+req.body.playerName+"\",cheatMode:"+req.body.cheat+"}"
   res.send(json);
 }, (error) => {
   // Execute any logic that should take place if the save fails.

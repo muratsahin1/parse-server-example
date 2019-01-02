@@ -68,7 +68,7 @@ query.get(req.params.id)
 });
 });
 
-app.post("api/v1/save",(req,res) => {
+app.post("/api/v1/save",(req,res) => {
  console.log("SCORE",req.body.score);
  console.log("NAME",req.body.playerName);
  console.log("CHEAT",req.body.cheat);

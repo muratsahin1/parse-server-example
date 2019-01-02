@@ -82,7 +82,8 @@ gameScore.set("cheatMode", req.body.cheat);
 gameScore.save()
 .then((gameScore) => {
   // Execute any logic that should take place after the object is saved.
-  res.send('successfully added');
+  var json = "{status:200,score:"+req.body.score+",playerName:\""+req.body.playerName+"\",cheatMode:"+req.body.cheatMode+"}"
+  res.send(json);
 }, (error) => {
   // Execute any logic that should take place if the save fails.
   // error is a Parse.Error with an error code and message.

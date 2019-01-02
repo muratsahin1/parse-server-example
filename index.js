@@ -78,7 +78,7 @@ app.post("/save",(req,res) => {
   const GameScore = Parse.Object.extend("GameScore");
   const gameScore = new GameScore();
 
-  gameScore.set("score", req.body.user.score);
+  gameScore.set("score", parseInt(req.body.user.score));
   gameScore.set("playerName", req.body.user.name);
   gameScore.set("cheatMode", req.body.user.cheat);
 

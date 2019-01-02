@@ -68,7 +68,10 @@ query.get(req.params.id)
 });
 });
 
-app.post('api/v1/save',function(req,res){
+app.post("api/v1/save",(req,res) => {
+ console.log("SCORE",req.body.score);
+ console.log("NAME",req.body.playerName);
+ console.log("CHEAT",req.body.cheat);
  const GameScore = Parse.Object.extend("GameScore");
 const gameScore = new GameScore();
 
@@ -85,7 +88,7 @@ gameScore.save()
   // error is a Parse.Error with an error code and message.
   res.send('error: ' + error.message);
 });
-})
+});
 
 
 // There will be a test page available on the /test path of your server url

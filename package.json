@@ -13,6 +13,7 @@
     "kerberos": "~0.0.x",
     "parse": "~1.8.0",
     "parse-server": "*",
+    "parseboolean": "^1.0.0",
     "twig": "^1.12.0"
   },
   "scripts": {

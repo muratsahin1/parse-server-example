@@ -5,6 +5,7 @@ var express = require('parse-server/node_modules/express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
 const Twig = require("twig");
+var parseBoolean = require('parseboolean');
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -80,7 +81,7 @@ app.post("/save",(req,res) => {
 
   gameScore.set("score", parseInt(req.body.user.score));
   gameScore.set("playerName", req.body.user.name);
-  gameScore.set("cheatMode", req.body.user.cheat);
+  gameScore.set("cheatMode", parseBoolean(req.body.user.cheat));
 
   gameScore.save()
   .then((gameScore) => {

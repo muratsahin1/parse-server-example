@@ -69,32 +69,7 @@ query.get(req.params.id)
 });
 
 app.get("/save",(req,res) => {
- console.log("NAME_g",req.body.user.name); 
-  if (req.body.user.name) {
-  console.log("SCORE",req.body.score);
-  console.log("NAME",req.body.playerName);
-  console.log("CHEAT",req.body.cheat);
-  const GameScore = Parse.Object.extend("GameScore");
-  const gameScore = new GameScore();
-
-  gameScore.set("score", req.body.score);
-  gameScore.set("playerName", req.body.playerName);
-  gameScore.set("cheatMode", req.body.cheat);
-
-  gameScore.save()
-  .then((gameScore) => {
-    // Execute any logic that should take place after the object is saved.
-
-    var json = "{status:"+res.status+",score:"+req.body.score+",playerName:\""+req.body.playerName+"\",cheatMode:"+req.body.cheat+"}"
-    res.send(json);
-  }, (error) => {
-    // Execute any logic that should take place if the save fails.
-    // error is a Parse.Error with an error code and message.
-    res.send('error: ' + error.message);
-  });
- }else{
   res.render("register.twig");
- }
 });
 
 app.post("/save",(req,res) => {

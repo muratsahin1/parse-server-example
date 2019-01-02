@@ -75,15 +75,12 @@ app.get("/save",(req,res) => {
 app.post("/save",(req,res) => {
  console.log("NAME_p",req.body.user.name);
  if (req.body.user.name) {
-  console.log("SCORE",req.body.score);
-  console.log("NAME",req.body.playerName);
-  console.log("CHEAT",req.body.cheat);
   const GameScore = Parse.Object.extend("GameScore");
   const gameScore = new GameScore();
 
-  gameScore.set("score", req.body.score);
-  gameScore.set("playerName", req.body.playerName);
-  gameScore.set("cheatMode", req.body.cheat);
+  gameScore.set("score", req.body.user.score);
+  gameScore.set("playerName", req.body.user.name);
+  gameScore.set("cheatMode", req.body.user.cheat);
 
   gameScore.save()
   .then((gameScore) => {

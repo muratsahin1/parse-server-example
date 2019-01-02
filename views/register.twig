@@ -4,9 +4,10 @@
 REGISTER GAME AND SCORE
 {% endblock bodytitle %}
 {% block bodytext %} 
-<form method="post" action="/">
-    <input type="text" name="user[name]">
-    <input type="text" name="user[email]">
+<form method="post" action="/save">
+    <input type="text" name="user[name]" placeholder="Name">
+    <input type="text" name="user[score]" placeholder="Score">
+    <input type="text" name="user[cheat]" placeholder="Cheat">
     <input type="submit" value="Submit">
 </form>
 {% endblock bodytext %}
